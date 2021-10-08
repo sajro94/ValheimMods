@@ -126,7 +126,11 @@ namespace EpicLoot
             {
                 if (!Mathf.Approximately(values.MinValue, values.MaxValue))
                 {
-                    result += $" [{values.MinValue}-{values.MaxValue}]";
+                    bool bothSamePrefix = values.MinValue * values.MaxValue > 0;
+                    var minPrefix = values.MinValue > 0 ? "+" : "-";
+                    var maxPrefix = values.MaxValue > 0 ? "+" : "-";
+
+                    result += $" {(bothSamePrefix ? minPrefix :"")}[{(!bothSamePrefix ? minPrefix : "")}{values.MinValue}{(bothSamePrefix ? "-" : " - ")}{(!bothSamePrefix ? maxPrefix : "")}{values.MaxValue}]";
                 }
             }
             return result;
