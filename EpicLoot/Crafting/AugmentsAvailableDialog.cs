@@ -63,7 +63,8 @@ namespace EpicLoot.Crafting
                 {
                     var values = effectDef.GetValuesForRarity(item.GetRarity(),item.GetMagicItem().LegendaryID);
                     var valueDisplay = values != null ? Mathf.Approximately(values.MinValue, values.MaxValue) ? $"{values.MinValue}" : $"({values.MinValue}-{values.MaxValue})" : "";
-                    t.AppendLine($"‣ {string.Format(Localization.instance.Localize(effectDef.DisplayText), valueDisplay)}");
+                    string prefix = null; //TODO
+                    t.AppendLine($"‣ {string.Format(Localization.instance.Localize(effectDef.DisplayText), valueDisplay, prefix)}");
                 }
 
                 Description.color = rarityColor;

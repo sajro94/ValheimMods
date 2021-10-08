@@ -245,6 +245,13 @@ namespace EpicLoot
             public ValueDef Legendary;
         }
 
+        [Serializable]
+        public class ValuePrefixes
+        {
+            public string Positive = "+";
+            public string Negative = "-";
+        }
+
         public string Type { get; set; }
 
         public string DisplayText = "";
@@ -252,6 +259,7 @@ namespace EpicLoot
         public MagicItemEffectRequirements Requirements = new MagicItemEffectRequirements();
         public ValuesPerRarityDef ValuesPerRarity = new ValuesPerRarityDef();
         public float SelectionWeight = 1;
+        public ValuePrefixes ValuePrefix = new ValuePrefixes();
         public bool CanBeAugmented = true;
         public string Comment;
         public List<string> Prefixes = new List<string>();

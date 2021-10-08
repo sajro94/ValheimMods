@@ -113,7 +113,8 @@ namespace EpicLoot
         public static string GetEffectText(MagicItemEffectDefinition effectDef, float value)
         {
             var localizedDisplayText = Localization.instance.Localize(effectDef.DisplayText);
-            var result = string.Format(localizedDisplayText, value);
+            var prefix = value > 0 ? effectDef.ValuePrefix.Positive : effectDef.ValuePrefix.Negative;
+            var result = string.Format(localizedDisplayText, Mathf.Abs(value), prefix);
             return result;
         }
 
@@ -126,11 +127,15 @@ namespace EpicLoot
             {
                 if (!Mathf.Approximately(values.MinValue, values.MaxValue))
                 {
-                    bool bothSamePrefix = values.MinValue * values.MaxValue > 0;
-                    var minPrefix = values.MinValue > 0 ? "+" : "-";
-                    var maxPrefix = values.MaxValue > 0 ? "+" : "-";
 
-                    result += $" {(bothSamePrefix ? minPrefix :"")}[{(!bothSamePrefix ? minPrefix : "")}{values.MinValue}{(bothSamePrefix ? "-" : " - ")}{(!bothSamePrefix ? maxPrefix : "")}{values.MaxValue}]";
+                    var positivePrefix = effectDef.ValuePrefix.Positive;
+                    var negativePrefix = effectDef.ValuePrefix.Negative;
+
+                    bool bothSamePrefix = values.MinValue * values.MaxValue > 0;
+                    var minPrefix = values.MinValue > 0 ? positivePrefix : negativePrefix;
+                    var maxPrefix = values.MaxValue > 0 ? positivePrefix : negativePrefix;
+
+                    result += $" {(bothSamePrefix ? minPrefix :"")}[{(!bothSamePrefix ? minPrefix : "")}{Mathf.Abs(values.MinValue)}{(bothSamePrefix ? "-" : " - ")}{(!bothSamePrefix ? maxPrefix : "")}{Mathf.Abs(values.MaxValue)}]";
                 }
             }
             return result;
