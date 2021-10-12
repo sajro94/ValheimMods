@@ -38,13 +38,19 @@ namespace EpicLoot
     {
         public int Version = 2;
         public ItemRarity Rarity;
+        public MagicItemComponent ParentComponent;
         public List<MagicItemEffect> Effects = new List<MagicItemEffect>();
         public string TypeNameOverride;
         public int AugmentedEffectIndex = -1;
         public List<int> AugmentedEffectIndices = new List<int>();
         public string DisplayName;
         public string LegendaryID;
+        public int MundaneMaxQuality = -1;
         public string SetID;
+
+        public void AddEffect(MagicItemEffect miEffect) {
+            Effects.Add(miEffect);
+        }
 
         public string GetItemTypeName(ExtendedItemData baseItem)
         {

@@ -814,7 +814,7 @@ namespace EpicLoot
                 Rarity = ItemRarity.Epic,
                 TypeNameOverride = "$mod_epicloot_item_andvaranaut_type"
             };
-            magicItem.Effects.Add(new MagicItemEffect(MagicEffectType.Andvaranaut));
+            magicItem.AddEffect(new MagicItemEffect(MagicEffectType.Andvaranaut));
 
             prefab.m_itemData = new ExtendedItemData(prefab.m_itemData);
             prefab.m_itemData.Extended().ReplaceComponent<MagicItemComponent>().MagicItem = magicItem;

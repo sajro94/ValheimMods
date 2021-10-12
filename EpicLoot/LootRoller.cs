@@ -401,7 +401,7 @@ namespace EpicLoot
                         }
 
                         var effect = RollEffect(effectDef, ItemRarity.Legendary, guaranteedMagicEffect.Values);
-                        magicItem.Effects.Add(effect);
+                        magicItem.AddEffect(effect);
                         effectCount--;
                     }
                 }
@@ -421,7 +421,7 @@ namespace EpicLoot
                 var effectDef = _weightedEffectTable.Roll();
 
                 var effect = RollEffect(effectDef, magicItem.Rarity);
-                magicItem.Effects.Add(effect);
+                magicItem.AddEffect(effect);
             }
 
             if (string.IsNullOrEmpty(magicItem.DisplayName))
@@ -677,7 +677,7 @@ namespace EpicLoot
             if (!string.IsNullOrEmpty(ForcedMagicEffect) && !item.HasEffect(ForcedMagicEffect))
             {
                 EpicLoot.Log($"AddDebugMagicEffect {ForcedMagicEffect}");
-                item.Effects.Add(RollEffect(MagicItemEffectDefinitions.Get(ForcedMagicEffect), item.Rarity));
+                item.AddEffect(RollEffect(MagicItemEffectDefinitions.Get(ForcedMagicEffect), item.Rarity));
             }
         }
 
